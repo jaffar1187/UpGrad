@@ -21,6 +21,7 @@ class UpGradAssignment {
 		int[] tokens = new int[numOfEvents];
 
 		int count = 0;
+		int j = 0;
 		for (int i = 0; i < numOfEvents; i++) {
 			stringSequence[i][0] = scan.next();
 
@@ -41,13 +42,29 @@ class UpGradAssignment {
 			System.out.println("EMPTY");
 			return;
 		}
-
-		// Printing the names of students who are yet to be served.
+		count = 0;
 		for (int i = 0; i < cgpa.length; i++) {
 			if (cgpa[i] != 0f) {
-				System.out.println(stringSequence[i][1]);
-				System.out.println();
+				count++;
 			}
+		}
+		String[][] stringSequence2 = new String[count][2];
+		float[] cgpa2 = new float[count];
+		int[] tokens2 = new int[count];
+		for (int i = 0; i < cgpa.length; i++) {
+			if (cgpa[i] != 0f) {
+				stringSequence2[j][1] = stringSequence[i][1];
+				cgpa2[j] = cgpa[i];
+				tokens2[j] = tokens[i];
+				j++;
+			}
+		}
+		// Printing the names of students who are yet to be served.
+		for (int i = 0; i < count; i++) {
+			int position = maxElement(cgpa2, stringSequence2, tokens2);
+			System.out.println(stringSequence2[position][1]);
+			System.out.println();
+			cgpa2[position] = 0;
 		}
 
 	}
